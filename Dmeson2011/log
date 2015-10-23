@@ -1,0 +1,100 @@
+
+Processing PlotXsec.cc++...
+
+diff xsec pt : 1.500 ~ 2.500= 189573744.000 pb
+total xsec pt : 189573744.000 pb
+diffXsec: 1.89574e+08
+genB: 1.36149e+09
+aerrorl3: 1.00765
+recoB: 12295
+
+diff xsec pt : 2.500 ~ 3.500= 85470000.000 pb
+total xsec pt : 85470000.000 pb
+diffXsec: 8.547e+07
+genB: 6.1383e+08
+aerrorl3: 27.1186
+recoB: 65651.9
+
+diff xsec pt : 3.500 ~ 4.500= 36935500.000 pb
+total xsec pt : 36935500.000 pb
+diffXsec: 3.69355e+07
+genB: 2.65264e+08
+aerrorl3: 78.5603
+recoB: 85487.8
+
+diff xsec pt : 4.500 ~ 5.500= 16943376.000 pb
+total xsec pt : 16943376.000 pb
+diffXsec: 1.69434e+07
+genB: 1.21684e+08
+aerrorl3: 176.086
+recoB: 98316.2
+
+diff xsec pt : 5.500 ~ 7.000= 7298150.000 pb
+total xsec pt : 10947225.000 pb
+diffXsec: 7.29815e+06
+genB: 7.8621e+07
+aerrorl3: 300.6
+recoB: 121041
+
+diff xsec pt : 7.000 ~ 9.000= 2608468.750 pb
+total xsec pt : 5216937.500 pb
+diffXsec: 2.60847e+06
+genB: 3.74671e+07
+aerrorl3: 330.413
+recoB: 97559.3
+
+diff xsec pt : 9.000 ~ 11.000= 932939.375 pb
+total xsec pt : 1865878.750 pb
+diffXsec: 932939
+genB: 1.34004e+07
+aerrorl3: 225.805
+recoB: 49165.4
+
+diff xsec pt : 11.000 ~ 13.000= 387034.375 pb
+total xsec pt : 774068.750 pb
+diffXsec: 387034
+genB: 5.55923e+06
+aerrorl3: 140.477
+recoB: 24895.7
+
+diff xsec pt : 13.000 ~ 16.000= 154751.750 pb
+total xsec pt : 464255.250 pb
+diffXsec: 154752
+genB: 3.3342e+06
+aerrorl3: 100.603
+recoB: 17721.8
+
+diff xsec pt : 16.000 ~ 20.000= 51616.906 pb
+total xsec pt : 206467.625 pb
+diffXsec: 51616.9
+genB: 1.48281e+06
+aerrorl3: 59.5547
+recoB: 9563.57
+
+diff xsec pt : 20.000 ~ 28.000= 12210.047 pb
+total xsec pt : 97680.375 pb
+diffXsec: 12210
+genB: 701523
+aerrorl3: 32.6375
+recoB: 5448.32
+
+diff xsec pt : 28.000 ~ 40.000= 1808.758 pb
+total xsec pt : 21705.100 pb
+diffXsec: 1808.76
+genB: 155882
+aerrorl3: 10.5099
+recoB: 1429.97
+
+diff xsec pt : 40.000 ~ 60.000= 202.221 pb
+total xsec pt : 4044.430 pb
+diffXsec: 202.221
+genB: 29046.4
+aerrorl3: 1.95836
+recoB: 266.454
+
+diff xsec pt : 60.000 ~ 100.000= 12.899 pb
+total xsec pt : 515.974 pb
+diffXsec: 12.8993
+genB: 3705.63
+aerrorl3: 0.249841
+recoB: 33.9932

@@ -17,7 +17,7 @@ void PlotXsec(){
 	//	cout<<"---"<<endl;
 	//}
 	//return;
-	string fonlldata="../fonllData/D_pp_pt_rap24_5p5_pt0to200.dat";
+	string fonlldata="../fonllData/D_pp_pt_rap1_2p75_pt0to200.dat";
 	double diffXsec = 0;
     double BRchain=3.93e-2+1.399e-4;
     double Fraction=0.557;
@@ -38,6 +38,7 @@ void PlotXsec(){
     double bins[BINS+1] = {1.5, 2.5, 3.5, 4.5, 5.5, 7, 9, 11, 13, 16, 20, 28, 40, 60, 100};
 	double effD[BINS] = {0.0004110786, 0.004868644, 0.01467014, 0.03677896, 0.07008137, 0.1185297, 0.1670131, 0.2038537, 0.2419492, 0.2935908, 0.3535325, 0.4175788, 0.4175788, 0.4175788};
 	double effDerr[BINS] = {8.195642e-05, 0.0004130658 , 0.0009189658, 0.001791014, 0.002483458, 0.003386794, 0.004592759, 0.005642633, 0.005676826, 0.006227245, 0.00599039, 0.007349736, 0.007349736, 0.007349736};
+	double RAA[BINS] = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5};
 	for(int i = 0; i < BINS; i++){
 		Bplusdsigmadpt_1ptbins(false, diffXsec, bins[i], bins[i+1], fonlldata);
 		cout<<"diffXsec: "<<diffXsec<<endl;
@@ -47,11 +48,11 @@ void PlotXsec(){
 		aerrorl[i] = 0;
 		aerrorh[i] = 0;
 
-		genB[i] = 0.5 * 2 * 166e-6*10 * 208*208 * diffXsec * (bins[i+1]-bins[i]);
+		//genB[i] = 0.5 * 2 * 166e-6*10 * 208*208 * diffXsec * (bins[i+1]-bins[i]);
+		genB[i] = RAA[i] * 2 * 166e-6* 208*208 * diffXsec * (bins[i+1]-bins[i]);
 		aerrorl2[i] = 0;
 		aerrorh2[i] = 0;
 		cout<<"genB: "<<genB[i]<<endl;
-		//Assuming RAA = 0.5, Luminosity = 10 times 2011 PbPb data
 		
         recoB[i] = genB[i]*effD[i]*BRchain*Fraction;	
 		aerrorl3[i] = recoB[i]*effDerr[i];
