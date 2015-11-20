@@ -6,7 +6,16 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TCut.h>
+#include <TLegend.h>
 using namespace std;
+TLegend* myLegend(Double_t x1, Double_t y1, Double_t x2, Double_t y2)
+{
+  TLegend* leg = new TLegend(x1,y1,x2,y2);
+  leg->SetBorderSize(0);
+  leg->SetFillStyle(0);
+  return leg;
+};
+
 void PlotXsec(){
     TString input = "D0_PbPb_acc_eff_ptbin_14_ybin_6_prompt_FONLLweight_cent-0to100_dataptshape_y1_Ncollweight1.root";
     TFile *inf = new TFile(input.Data());
@@ -67,6 +76,7 @@ void PlotXsec(){
     gStyle->SetOptTitle(1);
     cr->SetLogy();
 
+
     TH2F* hempty=new TH2F("hempty","",1,0,100,10.,10,10000000);
 	hempty->SetTitle("average B meson dsigma/dpt");
     hempty->Draw();
@@ -77,21 +87,29 @@ void PlotXsec(){
 
     TH2F* hempty2=new TH2F("hempty2","",1,0,100,10.,1e5,1e11);
 	hempty2->SetTitle("# of produced D0 meson");
-	hempty2->GetXaxis()->SetTitle("D0 pt");
+	hempty2->GetXaxis()->SetTitle("D0 pt [GeV]");
     hempty2->Draw();
     TGraphAsymmErrors* GenB = new TGraphAsymmErrors(BINS, apt, genB, aptl, aptl, aerrorl2, aerrorh2);
 	GenB->SetLineWidth(3);
 	GenB->SetLineColor(4);
 	GenB->Draw("p same");
+    TLegend* leg = myLegend(0.35,0.6,0.95,0.8);
+    leg->SetFillColor(0);
+    leg->SetBorderSize(0);
+	leg->SetTextSize(0.05);
+    leg->AddEntry(GenB,"PbPb #sqrt{s_{NN}}= 5.02 TeV","l");
+    leg->AddEntry((TObject*)0,"Lumi = 0.5ub-1","");
+	leg->Draw();
 	cr->SaveAs("Plots/GenD.png");
 
     TH2F* hempty3=new TH2F("hempty3","",1,0,100,10.,1e2,1e8);
 	hempty3->SetTitle("# of reconstructed D0");
-	hempty3->GetXaxis()->SetTitle("D0 pt");
+	hempty3->GetXaxis()->SetTitle("D0 pt [GeV]");
     hempty3->Draw();
     TGraphAsymmErrors* RecoB = new TGraphAsymmErrors(BINS, apt, recoB, aptl, aptl, aerrorl3, aerrorh3);
 	RecoB->SetLineWidth(3);
 	RecoB->SetLineColor(4);
 	RecoB->Draw("p same");
+	leg->Draw();
 	cr->SaveAs("Plots/RecoD.png");
 }
