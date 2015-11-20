@@ -6,6 +6,7 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TCut.h>
+#include "utilities.h"
 using namespace std;
 void PlotXsec(){
     string fonlldata="../fonllData/B_pp_pt_rap24_2p75_pt0to200.dat";
@@ -47,6 +48,7 @@ void PlotXsec(){
 	double effB[BINS];
 	double recoB[BINS];
 	double bins[BINS+1] = {10,60};
+	double PbPb2011[BINS] = {33.1271};
 	for(int i = 0; i < BINS; i++){
 		Bplusdsigmadpt_1ptbins(false, diffXsec, bins[i], bins[i+1], fonlldata);
 		cout<<"diffXsec: "<<diffXsec<<endl;
@@ -99,7 +101,7 @@ void PlotXsec(){
 	GenB->Draw("p same");
 	cr->SaveAs("Plots/GenB.png");
 
-    TH2F* hempty3=new TH2F("hempty3","",1,0,100,10.,1e-2,1e4);
+    TH2F* hempty3=new TH2F("hempty3","",1,0,100,10.,1e1,1e2);
 	hempty3->SetTitle("# of reconstructed B+");
 	hempty3->GetXaxis()->SetTitle("B pt");
     hempty3->Draw();
@@ -107,5 +109,13 @@ void PlotXsec(){
 	RecoB->SetLineWidth(3);
 	RecoB->SetLineColor(4);
 	RecoB->Draw("p same");
+    TGraphAsymmErrors* B2011 = new TGraphAsymmErrors(BINS, apt, PbPb2011, aptl, aptl, aerrorl3, aerrorh3);
+	B2011->SetLineWidth(3);
+	B2011->SetLineColor(2);
+	B2011->Draw("p same");
+    TLegend *leg = myLegend(0.50,0.7,0.86,0.89);
+    leg->AddEntry(RecoB,"FONLL calculated","l");
+    leg->AddEntry(B2011,"2011 data mesured","l");
+	leg->Draw();
 	cr->SaveAs("Plots/RecoB.png");
 }

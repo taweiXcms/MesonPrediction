@@ -38,22 +38,25 @@ void PlotXsec(){
     double bins[BINS+1] = {1.5, 2.5, 3.5, 4.5, 5.5, 7, 9, 11, 13, 16, 20, 28, 40, 60, 100};
 	double effD[BINS] = {0.0004110786, 0.004868644, 0.01467014, 0.03677896, 0.07008137, 0.1185297, 0.1670131, 0.2038537, 0.2419492, 0.2935908, 0.3535325, 0.4175788, 0.4175788, 0.4175788};
 	double effDerr[BINS] = {8.195642e-05, 0.0004130658 , 0.0009189658, 0.001791014, 0.002483458, 0.003386794, 0.004592759, 0.005642633, 0.005676826, 0.006227245, 0.00599039, 0.007349736, 0.007349736, 0.007349736};
+	double ratioDataDrivenVSFONLL[BINS] = {1.671,1.629,1.535,1.471,1.382,1.257,1.148,1.098,1.117,1.117,1.117,1.117,1.117,1.117};
+	double HLTprescale2015[BINS] = {150., 150., 150., 150., 150., 150., 150., 150., 150., 150., 50., 50., 10., 1.};
+	//double HLTprescale2015[BINS] = {1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.};
 	for(int i = 0; i < BINS; i++){
 		Bplusdsigmadpt_1ptbins(false, diffXsec, bins[i], bins[i+1], fonlldata);
-		cout<<"diffXsec: "<<diffXsec<<endl;
+		cout<<"diffXsec: "<<diffXsec * Fraction<<endl;
 		apt[i] = (bins[i]+bins[i+1])/2;
-		asigma[i] = diffXsec;
+		asigma[i] = diffXsec * Fraction;
 		aptl[i] = (bins[i+1]-bins[i])/2;
 		aerrorl[i] = 0;
 		aerrorh[i] = 0;
 
-		genB[i] = 0.5 * 2 * 166e-6*10 * 208*208 * diffXsec * (bins[i+1]-bins[i]);
+		genB[i] = 0.5 * 2 * 500e-6*10 * 208*208 * diffXsec * Fraction * (bins[i+1]-bins[i]) * ratioDataDrivenVSFONLL[i] / HLTprescale2015[i];//2-15 expected PbPb = 0.5ub-1
 		aerrorl2[i] = 0;
 		aerrorh2[i] = 0;
 		cout<<"genB: "<<genB[i]<<endl;
-		//Assuming RAA = 0.5, Luminosity = 10 times 2011 PbPb data
+		//Assuming RAA = 0.5, Luminosity = 10 times 2011 PbPb data HLT prescale = 4.429/165.285
 		
-        recoB[i] = genB[i]*effD[i]*BRchain*Fraction;	
+        recoB[i] = genB[i]*effD[i]*BRchain;	
 		aerrorl3[i] = recoB[i]*effDerr[i];
 		aerrorh3[i] = recoB[i]*effDerr[i];
 		cout<<"aerrorl3: "<<aerrorl3[i]<<endl;
@@ -81,7 +84,7 @@ void PlotXsec(){
 	GenB->Draw("p same");
 	cr->SaveAs("Plots/GenD.png");
 
-    TH2F* hempty3=new TH2F("hempty3","",1,0,100,10.,1e3,1e8);
+    TH2F* hempty3=new TH2F("hempty3","",1,0,100,10.,1e2,1e8);
 	hempty3->SetTitle("# of reconstructed D0");
 	hempty3->GetXaxis()->SetTitle("D0 pt");
     hempty3->Draw();
