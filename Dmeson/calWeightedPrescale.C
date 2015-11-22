@@ -36,4 +36,12 @@ void calWeightedPrescale(){
 	diffXsec2=diffXsec2*10;
 	diffXsec3=diffXsec3*20;
 	cout<<diffXsec3/((diffXsec1/5)+(diffXsec2/1))<<endl;
+
+    Bplusdsigmadpt_1ptbins(false, diffXsec1, 28, 30, fonlldata);
+    Bplusdsigmadpt_1ptbins(false, diffXsec2, 30, 40, fonlldata);
+    Bplusdsigmadpt_1ptbins(false, diffXsec3, 28, 40, fonlldata);
+	diffXsec1=diffXsec1*2;
+	diffXsec2=diffXsec2*10;
+	diffXsec3=diffXsec3*12;
+	cout<<diffXsec3/((diffXsec1/50.)+(diffXsec2/34.46))<<endl;
 }
